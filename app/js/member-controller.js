@@ -6,7 +6,7 @@
 
 
       let vm = this;
-      let port = 'https://welkait-tegede.herokuapp.com';
+      let port = 'https://gondar-sms.herokuapp.com';
       // let port = 'http://localhost:3000';
 
 

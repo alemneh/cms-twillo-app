@@ -31631,7 +31631,7 @@
 	  app.factory('AuthService', ['$http', '$window', function ($http, $window) {
 	    var token;
 	    var signedIn = false;
-	    var url = 'https://welkait-tegede.herokuapp.com';
+	    var url = 'https://gondar-sms.herokuapp.com';
 	    // var url = 'http://localhost:3000';
 	    var auth = {
 	      createUser: function createUser(user, cb) {
@@ -31729,7 +31729,7 @@
 	  app.controller('MemberController', ['$http', '$location', '$window', function ($http, $location, $window) {
 	
 	    var vm = this;
-	    var port = 'https://welkait-tegede.herokuapp.com';
+	    var port = 'https://gondar-sms.herokuapp.com';
 	    // let port = 'http://localhost:3000';
 	
 	

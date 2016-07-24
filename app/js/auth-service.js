@@ -2,7 +2,7 @@ module.exports = function(app) {
   app.factory('AuthService', ['$http', '$window', function($http, $window) {
     var token;
     var signedIn = false;
-    var url = 'https://welkait-tegede.herokuapp.com';
+    var url = 'https://gondar-sms.herokuapp.com';
     // var url = 'http://localhost:3000';
     var auth = {
       createUser(user, cb) {

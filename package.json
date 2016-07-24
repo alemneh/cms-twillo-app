@@ -1,5 +1,5 @@
 {
-  "name": "welkait-tegede-association-cms",
+  "name": "cms-twillo-app",
   "version": "1.0.0",
   "description": "Content management system for non-profit",
   "main": "server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alemneh/Welkait-Tegede-Association-CMS.git"
+    "url": "git+https://github.com/alemneh/cms-twillo-app.git"
   },
   "author": "alemneh asefa",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alemneh/Welkait-Tegede-Association-CMS/issues"
+    "url": "https://github.com/alemneh/cms-twillo-app/issues"
   },
-  "homepage": "https://github.com/alemneh/Welkait-Tegede-Association-CMS#readme",
+  "homepage": "https://github.com/alemneh/cms-twillo-app#readme",
   "dependencies": {
     "angular": "^1.5.7",
     "angular-ui-router": "^0.3.1",
