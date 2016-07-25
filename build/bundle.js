@@ -31635,8 +31635,8 @@
 	  app.factory('AuthService', ['$http', '$window', function ($http, $window) {
 	    var token;
 	    var signedIn = false;
-	    // var url = 'https://gondar-sms.herokuapp.com';
-	    var url = 'http://localhost:3000';
+	    var url = 'https://gondar-sms.herokuapp.com';
+	    // var url = 'http://localhost:3000';
 	    var auth = {
 	      createUser: function createUser(user, cb) {
 	        cb || function () {};
@@ -31733,8 +31733,9 @@
 	  app.controller('MemberController', ['$http', '$location', '$window', function ($http, $location, $window) {
 	
 	    var vm = this;
-	    // let port = 'https://gondar-sms.herokuapp.com';
-	    var port = 'http://localhost:3000';
+	    var port = 'https://gondar-sms.herokuapp.com';
+	    // let port = 'http://localhost:3000';
+	
 	
 	    //Main data
 	    vm.members = [];
@@ -31794,9 +31795,11 @@
 	module.exports = function (app) {
 	  app.controller('SmsController', ['$http', '$location', function ($http, $location) {
 	    var _this = this;
+	    var url = 'https://gondar-sms.herokuapp.com';
+	    // let url = 'http://localhost:3000';
 	
 	    _this.sendMessage = function (message) {
-	      $http.post('http://localhost:3000/sms', message).then(function (res) {
+	      $http.post(url + '/sms', message).then(function (res) {
 	        console.log(res);
 	        $location.path('/home');
 	      }, function (err) {
