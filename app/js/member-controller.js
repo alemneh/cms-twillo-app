@@ -6,8 +6,8 @@
 
 
       let vm = this;
-      let port = 'https://gondar-sms.herokuapp.com';
-      // let port = 'http://localhost:3000';
+      // let port = 'https://gondar-sms.herokuapp.com';
+      let port = 'http://localhost:3000';
 
 
       //Main data

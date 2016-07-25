@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-
   },
   "repository": {
     "type": "git",
@@ -25,7 +24,8 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "jsonwebtoken": "^7.0.0",
-    "mongoose": "^4.4.20"
+    "mongoose": "^4.4.20",
+    "twilio": "^2.9.1"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",

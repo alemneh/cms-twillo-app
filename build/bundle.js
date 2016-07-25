@@ -64,6 +64,7 @@
 	  // CONTROLLERS
 	  __webpack_require__(6)(app);
 	  __webpack_require__(7)(app);
+	  __webpack_require__(8)(app);
 	})();
 
 /***/ },
@@ -31599,6 +31600,9 @@
 	    }).when('/login', {
 	      templateUrl: '/views/login-view.html',
 	      requireLogin: true
+	    }).when('/sms', {
+	      templateUrl: '/views/sms-view.html',
+	      requireLogin: true
 	    });
 	  }]);
 	};
@@ -31631,8 +31635,8 @@
 	  app.factory('AuthService', ['$http', '$window', function ($http, $window) {
 	    var token;
 	    var signedIn = false;
-	    var url = 'https://gondar-sms.herokuapp.com';
-	    // var url = 'http://localhost:3000';
+	    // var url = 'https://gondar-sms.herokuapp.com';
+	    var url = 'http://localhost:3000';
 	    var auth = {
 	      createUser: function createUser(user, cb) {
 	        cb || function () {};
@@ -31729,9 +31733,8 @@
 	  app.controller('MemberController', ['$http', '$location', '$window', function ($http, $location, $window) {
 	
 	    var vm = this;
-	    var port = 'https://gondar-sms.herokuapp.com';
-	    // let port = 'http://localhost:3000';
-	
+	    // let port = 'https://gondar-sms.herokuapp.com';
+	    var port = 'http://localhost:3000';
 	
 	    //Main data
 	    vm.members = [];
@@ -31775,6 +31778,27 @@
 	      $http.delete(port + '/members/' + member._id).then(function (res) {
 	        console.log(res);
 	        $location.path('/members/view');
+	      }, function (err) {
+	        return console.log(err);
+	      });
+	    };
+	  }]);
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = function (app) {
+	  app.controller('SmsController', ['$http', '$location', function ($http, $location) {
+	    var _this = this;
+	
+	    _this.sendMessage = function (message) {
+	      $http.post('http://localhost:3000/sms', message).then(function (res) {
+	        console.log(res);
+	        $location.path('/home');
 	      }, function (err) {
 	        return console.log(err);
 	      });

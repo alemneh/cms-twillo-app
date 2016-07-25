@@ -41,6 +41,9 @@ module.exports = function(app) {
     }).when('/login', {
       templateUrl: '/views/login-view.html',
       requireLogin: true
+    }).when('/sms', {
+      templateUrl: '/views/sms-view.html',
+      requireLogin: true
     });
   }]);
 };

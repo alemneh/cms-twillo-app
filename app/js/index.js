@@ -15,4 +15,5 @@
    // CONTROLLERS
   require('./navigation-controller')(app);
   require('./member-controller')(app);
+  require('./sms-controller')(app);
 })();

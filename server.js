@@ -9,6 +9,8 @@ let paymentRouter = express.Router();
 let activityRouter = express.Router();
 let loginRouter = express.Router();
 let adminRouter = express.Router();
+let smsRouter = express.Router();
+
 var port = process.env.PORT || 3000;
 console.log(process.env.PORT);
 
@@ -20,11 +22,12 @@ require('./routes/user-routes')(userRouter, models);
 require('./routes/payment-routes')(paymentRouter, models);
 require('./routes/remittance-routes')(remittanceRouter, models);
 require('./routes/activity-routes')(activityRouter, models);
+require('./routes/sms-routes')(smsRouter, models);
 
 app.use(express.static(__dirname + '/build'));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://gondar-sms.herokuapp.com');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
   res.header('Access-Control-Allow-Headers', 'Content-Type, authorization, token');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
@@ -32,7 +35,7 @@ app.use((req, res, next) => {
 
 
 app.use('/', paymentRouter, userRouter, remittanceRouter,
-        loginRouter, adminRouter, activityRouter);
+        loginRouter, adminRouter, activityRouter, smsRouter);
 
 
 
