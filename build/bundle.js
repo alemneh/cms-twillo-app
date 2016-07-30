@@ -31735,6 +31735,7 @@
 	    var vm = this;
 	    var port = 'https://gondar-sms.herokuapp.com';
 	    vm.numberExist = false;
+	    vm.wrongNumbers = [];
 	    // let port = 'http://localhost:3000';
 	
 	
@@ -31747,7 +31748,13 @@
 	    vm.getAllMembers = function () {
 	      $http.get(port + '/members').then(function (res) {
 	        console.log(res);
+	        // res.data.data.forEach((m) => {
+	        //   if(m.telephone.length != 10) {
+	        //     console.log(m.telephone.split('').length);
+	        //   }
+	        // })
 	        vm.members = res.data.data;
+	        console.log(vm.wrongNumbers);
 	      }, function (err) {
 	        return console.log(err);
 	      });

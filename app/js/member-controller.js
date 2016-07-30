@@ -8,6 +8,7 @@
       let vm = this;
       let port = 'https://gondar-sms.herokuapp.com';
       vm.numberExist = false;
+      vm.wrongNumbers = [];
       // let port = 'http://localhost:3000';
 
 
@@ -22,7 +23,13 @@
         $http.get(port + '/members')
           .then((res) => {
             console.log(res);
+            // res.data.data.forEach((m) => {
+            //   if(m.telephone.length != 10) {
+            //     console.log(m.telephone.split('').length);
+            //   }
+            // })
             vm.members = res.data.data;
+            console.log(vm.wrongNumbers);
           }, (err) => console.log(err));
       };
 

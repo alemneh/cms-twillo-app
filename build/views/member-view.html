@@ -4,8 +4,10 @@
       Members
     </a>
     <a data-ng-repeat="member in memberCtrl.members"
-       data-ng-click="memberCtrl.getOneMember(member)" class="list-group-item">{{member.name}}
+       data-ng-click="memberCtrl.getOneMember(member)" class="list-group-item">{{$index + 1}}. &nbsp; {{member.name}}
+       &nbsp;&nbsp;&nbsp; {{member.telephone}}
     </a>
+    {{member.telephone.length}}
   </div>
   <p data-ng-if="!memberCtrl.members.length">No members added yet. <a href="#/members/add"> Add Members</a></p>
 </section>
