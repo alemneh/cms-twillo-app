@@ -31734,6 +31734,7 @@
 	
 	    var vm = this;
 	    var port = 'https://gondar-sms.herokuapp.com';
+	    vm.numberExist = false;
 	    // let port = 'http://localhost:3000';
 	
 	
@@ -31763,7 +31764,8 @@
 	        console.log(res);
 	        $location.path('/members/view');
 	      }, function (err) {
-	        return console.log(err);
+	        console.log(err);
+	        vm.numberExist = true;
 	      });
 	    };
 	

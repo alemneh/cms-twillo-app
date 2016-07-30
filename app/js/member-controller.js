@@ -7,6 +7,7 @@
 
       let vm = this;
       let port = 'https://gondar-sms.herokuapp.com';
+      vm.numberExist = false;
       // let port = 'http://localhost:3000';
 
 
@@ -37,7 +38,10 @@
           .then((res) => {
             console.log(res);
             $location.path('/members/view');
-          }, (err) => console.log(err));
+          }, (err) => {
+            console.log(err);
+            vm.numberExist = true;
+          });
       };
 
       vm.updateMember = function(updatedMember) {

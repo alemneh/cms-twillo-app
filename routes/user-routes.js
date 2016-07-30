@@ -13,8 +13,9 @@ module.exports = (userRouter, models) => {
       });
     })
     .post((req, res) => {
-      User.findOne({name: req.body.name}, (err, user) => {
+      User.findOne({telephone: req.body.telephone}, (err, user) => {
         if(err) throw err;
+        console.log(user);
         if(!user) {
           var newUser = new User(req.body);
           newUser.save((err, user) => {
@@ -23,7 +24,7 @@ module.exports = (userRouter, models) => {
             });
           });
         }else {
-          res.status(401).json({error: 'Username taken!'});
+          res.status(401).json({error: 'Number exsit!'});
         }
       });
     });

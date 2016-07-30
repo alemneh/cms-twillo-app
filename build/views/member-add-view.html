@@ -1,4 +1,8 @@
 <section data-ng-controller="MemberController as memberCtrl" class="container">
+  <div data-ng-if="memberCtrl.numberExist" class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Oh snap!</strong> Number already exsit.
+</div>
   <form data-ng-submit="memberCtrl.createMember(newMember)"class="form-horizontal">
     <fieldset>
       <legend>New Member Form</legend>
