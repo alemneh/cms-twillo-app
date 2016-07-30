@@ -1,5 +1,21 @@
 <section data-ng-controller="MemberController as memberCtrl" class="container">
-  <div data-ng-init="memberCtrl.getAllMembers()" class="list-group">
+  <table data-ng-init="memberCtrl.getAllMembers()" class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="member in memberCtrl.members">
+      <td>{{$index + 1}}</td>
+      <td>{{member.name}}</td>
+      <td data-ng-click="memberCtrl.getOneMember(member)">{{member.telephone}}</td>
+    </tr>
+  </tbody>
+</table>
+  <!-- <div data-ng-init="memberCtrl.getAllMembers()" class="list-group">
     <a  class="list-group-item active">
       Members
     </a>
@@ -8,6 +24,6 @@
        &nbsp;&nbsp;&nbsp; {{member.telephone}}
     </a>
     {{member.telephone.length}}
-  </div>
+  </div> -->
   <p data-ng-if="!memberCtrl.members.length">No members added yet. <a href="#/members/add"> Add Members</a></p>
 </section>
