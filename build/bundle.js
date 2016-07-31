@@ -31807,7 +31807,10 @@
 	    var url = 'https://gondar-sms.herokuapp.com';
 	    // let url = 'http://localhost:3000';
 	
+	
 	    _this.sendMessage = function (message) {
+	      message.text = 'GONDER HIBRET: ' + message.text + '\n\n-Gonder Hibret Committee';
+	      console.log(message);
 	      $http.post(url + '/sms', message).then(function (res) {
 	        console.log(res);
 	        $location.path('/home');
