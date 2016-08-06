@@ -64,11 +64,10 @@ module.exports = (smsRouter, models) => {
             console.log(message.sid);
           });
         });
-      res.json({
-        data: msg
+        res.json({
+          data: req.body.text
+        });
       });
     });
   });
-}
-
 }
