@@ -26,9 +26,14 @@ require('./routes/sms-routes')(smsRouter, models);
 
 app.use(express.static(__dirname + '/build'));
 
+var cors = {
+  origin: ["https://gonder-hibret.github.io", "https://gondar-sms.herokuapp.com"],
+  main: "www.one.com"
+}
+
 app.use((req, res, next) => {
-  console.log(req);
-  res.header('Access-Control-Allow-Origin', '*');
+   var origin = cors.origin.indexOf(req.header('host').toLowerCase()) > -1 ? req.headers.origin : cors.main;
+  res.header('Access-Control-Allow-Origin', origin);
   res.header('Access-Control-Allow-Headers', 'Content-Type, authorization, token');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
