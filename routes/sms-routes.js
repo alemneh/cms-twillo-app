@@ -3,6 +3,7 @@ var accountSid = process.env.ACCOUNT_SID;
 var auth_token = process.env.AUTH_TOKEN;
 var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, auth_token);
+let jwtAuth = require('../lib/auth.js');
 
 module.exports = (smsRouter, models) => {
   let User = models.User;
@@ -53,19 +54,20 @@ module.exports = (smsRouter, models) => {
       if(err) throw err;
       User.find({}, (err, users) => {
         if(err) throw err;
+        users.forEach((user) => {
           client.messages.create({
             body: req.body.generalMsg,
-            to: '+16192883205',
+            to: '+1'+user.telephone,
             from: process.env.TWILIO_NUMBER
           }, function(err, message) {
             if(err) console.log(err.message);
-            res.json({
-              data: req.body.text
-            });
             console.log(message.sid);
           });
-
+        });
+        res.json({
+          data: req.body.text
+        });
       });
     });
   });
-}
+};

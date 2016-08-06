@@ -1,10 +1,10 @@
 'use strict';
-
+let jwtAuth = require('../lib/auth.js');
 module.exports = (userRouter, models) => {
   let User = models.User;
 
   userRouter.route('/members')
-    .get((req, res) => {
+    .get(jwtAuth, (req, res) => {
       User.find({}, (err, users) => {
         if(err) throw err;
         res.json({
@@ -12,7 +12,7 @@ module.exports = (userRouter, models) => {
         });
       });
     })
-    .post((req, res) => {
+    .post(jwtAuth, (req, res) => {
       User.findOne({telephone: req.body.telephone}, (err, user) => {
         if(err) throw err;
         console.log(user);
@@ -30,7 +30,7 @@ module.exports = (userRouter, models) => {
     });
 
   userRouter.route('/members/:id')
-    .get((req, res) => {
+    .get(jwtAuth, (req, res) => {
       User.findById(req.params.id, (err, user) => {
         if(err) throw err;
         res.json({
@@ -38,7 +38,7 @@ module.exports = (userRouter, models) => {
         });
       });
     })
-    .put((req, res) => {
+    .put(jwtAuth, (req, res) => {
       User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
         if(err) throw err;
         res.json({
@@ -47,7 +47,7 @@ module.exports = (userRouter, models) => {
         });
       });
     })
-    .delete((req, res) => {
+    .delete(jwtAuth, (req, res) => {
       console.log(req);
       User.findById(req.params.id, (err, user) => {
         if(err) throw err;
