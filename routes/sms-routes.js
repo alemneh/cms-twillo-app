@@ -6,24 +6,56 @@ var client = new twilio.RestClient(accountSid, auth_token);
 
 module.exports = (smsRouter, models) => {
   let User = models.User;
+  let Message = models.Message;
   smsRouter.post('/sms', (req, res) => {
+    console.log("1");
     User.find({}, (err, users) => {
       if(err) throw err;
       users.forEach((user) => {
         client.messages.create({
           body: req.body.text,
           to: '+1'+user.telephone,
-          from: '+12064298558'
+          from: process.env.TWILIO_NUMBER
         }, function(err, message) {
           if(err) console.log(err.message);
           console.log(message.sid);
         });
-      })
+      });
       res.json({
         data: req.body.text
       });
-    })
+    });
     console.log(req.body.text);
 
-  })
+  });
+
+  smsRouter.get('/sms/message', (req, res) => {
+    Message.findById('57a5305ab05f91be06971f3c', (err, msg) => {
+      if(err) throw err;
+      res.json({
+        data: msg
+      });
+    });
+  });
+
+  smsRouter.post('/sms/message', (req, res) => {
+    console.log("2");
+    var newMessage = new Message(req.body);
+    newMessage.save((err, msg) => {
+      if(err) throw err;
+      res.json({
+        data: msg
+      });
+    });
+  });
+
+  smsRouter.put('/sms/message', (req, res) => {
+    console.log(req.body);
+    Message.findByIdAndUpdate('57a5305ab05f91be06971f3c', req.body, (err, msg) => {
+      if(err) throw err;
+      res.json({
+        data: msg
+      });
+    });
+  });
 }

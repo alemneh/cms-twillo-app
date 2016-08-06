@@ -1,0 +1,19 @@
+<section data-ng-controller="SmsController as smsCtrl" class="container">
+  <form data-ng-submit="smsCtrl.sendLongMessage(message)"class="form-horizontal">
+    <fieldset>
+      <legend>New Message</legend>
+      <div class="form-group">
+        <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+        <div class="col-lg-10">
+           <textarea data-ng-model="message.text" class="form-control" rows="3" id="textArea"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="reset" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</section>

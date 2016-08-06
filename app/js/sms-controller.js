@@ -16,5 +16,15 @@ module.exports = (app) => {
         }, (err) => console.log(err))
       }
 
+      _this.sendLongMessage = function(message) {
+        message.date = new Date();
+        message.generalMsg = 'GONDER HIBRET: Here is the link to the new general message https://gonder-hibret.github.io \n\n-Gonder Hibret Committee';
+        console.log(message);
+        $http.put(url +'/sms/message', message).then((res) => {
+          console.log(res);
+          $location.path('/home');
+        }, (err) => console.log(err))
+      }
+
   }]);
 }

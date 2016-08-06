@@ -31603,6 +31603,12 @@
 	    }).when('/sms', {
 	      templateUrl: '/views/sms-view.html',
 	      requireLogin: true
+	    }).when('/sms/long', {
+	      templateUrl: '/views/sms-long-view.html',
+	      requireLogin: true
+	    }).when('/sms/short', {
+	      templateUrl: '/views/sms-short-view.html',
+	      requireLogin: true
 	    });
 	  }]);
 	};
@@ -31812,6 +31818,18 @@
 	      message.text = 'GONDER HIBRET: ' + message.text + '\n\n-Gonder Hibret Committee';
 	      console.log(message);
 	      $http.post(url + '/sms', message).then(function (res) {
+	        console.log(res);
+	        $location.path('/home');
+	      }, function (err) {
+	        return console.log(err);
+	      });
+	    };
+	
+	    _this.sendLongMessage = function (message) {
+	      message.date = new Date();
+	      message.generalMsg = 'GONDER HIBRET: Here is the link to the new general message https://gonder-hibret.github.io \n\n-Gonder Hibret Committee';
+	      console.log(message);
+	      $http.put(url + '/sms/message', message).then(function (res) {
 	        console.log(res);
 	        $location.path('/home');
 	      }, function (err) {

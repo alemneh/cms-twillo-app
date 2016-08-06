@@ -44,6 +44,12 @@ module.exports = function(app) {
     }).when('/sms', {
       templateUrl: '/views/sms-view.html',
       requireLogin: true
+    }).when('/sms/long', {
+      templateUrl: '/views/sms-long-view.html',
+      requireLogin: true
+    }).when('/sms/short', {
+      templateUrl: '/views/sms-short-view.html',
+      requireLogin: true
     });
   }]);
 };

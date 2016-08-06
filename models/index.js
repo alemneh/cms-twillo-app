@@ -8,5 +8,6 @@ require('./payment')(mongoose, models);
 require('./activity')(mongoose, models);
 require('./remittance')(mongoose, models);
 require('./admin')(mongoose, models);
+require('./message')(mongoose, models);
 
 module.exports = models;
