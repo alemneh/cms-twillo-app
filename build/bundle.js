@@ -31738,10 +31738,12 @@
 	module.exports = function (app) {
 	  app.controller('MemberController', ['$http', '$location', '$window', function ($http, $location, $window) {
 	
+	    var token;
 	    var vm = this;
 	    var port = 'https://gondar-sms.herokuapp.com';
 	    vm.numberExist = false;
 	    vm.wrongNumbers = [];
+	    token = $window.localStorage.token;
 	    // let port = 'http://localhost:3000';
 	
 	
@@ -31752,15 +31754,12 @@
 	    };
 	
 	    vm.getAllMembers = function () {
-	      $http.get(port + '/members').then(function (res) {
+	      $http.get(port + '/members', {
+	        headers: {
+	          token: token
+	        }
+	      }).then(function (res) {
 	        console.log(res);
-	        // res.data.data.forEach((m) => {
-	        //   if(m.telephone.length != 10) {
-	        //     console.log(m.telephone.split('').length);
-	        //   }
-	        // })
-	        vm.members = res.data.data;
-	        console.log(vm.wrongNumbers);
 	      }, function (err) {
 	        return console.log(err);
 	      });
@@ -31773,7 +31772,11 @@
 	    };
 	
 	    vm.createMember = function (newMember) {
-	      $http.post(port + '/members', newMember).then(function (res) {
+	      $http.post(port + '/members', newMember, {
+	        headers: {
+	          token: token
+	        }
+	      }).then(function (res) {
 	        console.log(res);
 	        $location.path('/members/view');
 	      }, function (err) {
@@ -31791,7 +31794,11 @@
 	    };
 	
 	    vm.removeMember = function (member) {
-	      $http.delete(port + '/members/' + member._id).then(function (res) {
+	      $http.delete(port + '/members/' + member._id, {
+	        headers: {
+	          token: token
+	        }
+	      }).then(function (res) {
 	        console.log(res);
 	        $location.path('/members/view');
 	      }, function (err) {
@@ -31808,16 +31815,22 @@
 	'use strict';
 	
 	module.exports = function (app) {
-	  app.controller('SmsController', ['$http', '$location', function ($http, $location) {
+	  app.controller('SmsController', ['$http', '$location', '$window', function ($http, $location, $window) {
 	    var _this = this;
+	    var token;
 	    var url = 'https://gondar-sms.herokuapp.com';
 	    // let url = 'http://localhost:3000';
 	    var link = 'https://gonder-hibret.github.io';
+	    token = $window.localStorage.token;
 	
 	    _this.sendMessage = function (message) {
 	      message.text = 'GONDER HIBRET: ' + message.text + '\n\n-Gonder Hibret Committee';
 	      console.log(message);
-	      $http.post(url + '/sms', message).then(function (res) {
+	      $http.post(url + '/sms', message, {
+	        headers: {
+	          token: token
+	        }
+	      }).then(function (res) {
 	        console.log(res);
 	        $location.path('/home');
 	      }, function (err) {
@@ -31829,7 +31842,11 @@
 	      message.date = new Date();
 	      message.generalMsg = 'GONDER HIBRET: Here is the link to the new general message ' + link + '\n\n-Gonder Hibret Committee';
 	      console.log(message);
-	      $http.put(url + '/sms/message', message).then(function (res) {
+	      $http.put(url + '/sms/message', message, {
+	        headers: {
+	          token: token
+	        }
+	      }).then(function (res) {
 	        console.log(res);
 	        $location.path('/home');
 	      }, function (err) {

@@ -4,11 +4,12 @@
     app.controller('MemberController', ['$http', '$location', '$window',
     function($http, $location, $window) {
 
-
+      var token;
       let vm = this;
       let port = 'https://gondar-sms.herokuapp.com';
       vm.numberExist = false;
       vm.wrongNumbers = [];
+      token = $window.localStorage.token;
       // let port = 'http://localhost:3000';
 
 
@@ -20,16 +21,13 @@
 
 
       vm.getAllMembers = function() {
-        $http.get(port + '/members')
+        $http.get(port + '/members', {
+            headers: {
+              token: token
+            }
+          })
           .then((res) => {
             console.log(res);
-            // res.data.data.forEach((m) => {
-            //   if(m.telephone.length != 10) {
-            //     console.log(m.telephone.split('').length);
-            //   }
-            // })
-            vm.members = res.data.data;
-            console.log(vm.wrongNumbers);
           }, (err) => console.log(err));
       };
 
@@ -41,7 +39,11 @@
       };
 
       vm.createMember = function(newMember) {
-        $http.post(port + '/members', newMember)
+        $http.post(port + '/members', newMember, {
+          headers: {
+            token: token
+          }
+        })
           .then((res) => {
             console.log(res);
             $location.path('/members/view');
@@ -59,7 +61,11 @@
       };
 
       vm.removeMember = function(member) {
-        $http.delete(port + '/members/' + member._id)
+        $http.delete(port + '/members/' + member._id, {
+            headers: {
+              token: token
+            }
+          })
           .then((res) => {
             console.log(res);
             $location.path('/members/view');
