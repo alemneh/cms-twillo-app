@@ -5,6 +5,7 @@ module.exports = (app) => {
       let _this = this;
       let url = 'https://gondar-sms.herokuapp.com';
       // let url = 'http://localhost:3000';
+      let link = 'https://gonder-hibret.github.io';
 
 
       _this.sendMessage = function(message) {
@@ -18,7 +19,7 @@ module.exports = (app) => {
 
       _this.sendLongMessage = function(message) {
         message.date = new Date();
-        message.generalMsg = 'GONDER HIBRET: Here is the link to the new general message https://gonder-hibret.github.io \n\n-Gonder Hibret Committee';
+        message.generalMsg = 'GONDER HIBRET: Here is the link to the new general message '+ link +'\n\n-Gonder Hibret Committee';
         console.log(message);
         $http.put(url +'/sms/message', message).then((res) => {
           console.log(res);

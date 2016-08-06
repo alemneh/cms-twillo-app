@@ -8,7 +8,6 @@ module.exports = (smsRouter, models) => {
   let User = models.User;
   let Message = models.Message;
   smsRouter.post('/sms', (req, res) => {
-    console.log("1");
     User.find({}, (err, users) => {
       if(err) throw err;
       users.forEach((user) => {
@@ -39,7 +38,6 @@ module.exports = (smsRouter, models) => {
   });
 
   smsRouter.post('/sms/message', (req, res) => {
-    console.log("2");
     var newMessage = new Message(req.body);
     newMessage.save((err, msg) => {
       if(err) throw err;
@@ -53,6 +51,19 @@ module.exports = (smsRouter, models) => {
     console.log(req.body);
     Message.findByIdAndUpdate('57a5305ab05f91be06971f3c', req.body, (err, msg) => {
       if(err) throw err;
+      User.find({}, (err, users) => {
+        if(err) throw err;
+        users = [6192883205];
+        users.forEach((user) => {
+          client.messages.create({
+            body: req.body.text,
+            to: '+1'+user.telephone,
+            from: process.env.TWILIO_NUMBER
+          }, function(err, message) {
+            if(err) console.log(err.message);
+            console.log(message.sid);
+          });
+        });
       res.json({
         data: msg
       });
