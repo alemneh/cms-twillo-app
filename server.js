@@ -27,7 +27,8 @@ require('./routes/sms-routes')(smsRouter, models);
 app.use(express.static(__dirname + '/build'));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://gondar-sms.herokuapp.com');
+  console.log(req);
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, authorization, token');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
