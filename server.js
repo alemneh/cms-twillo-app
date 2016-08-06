@@ -24,21 +24,15 @@ require('./routes/remittance-routes')(remittanceRouter, models);
 require('./routes/activity-routes')(activityRouter, models);
 require('./routes/sms-routes')(smsRouter, models);
 
-app.use(express.static(__dirname + '/build'));
 
-var cors = {
-  origin: ["https://gonder-hibret.github.io", "https://gondar-sms.herokuapp.com"],
-  main: "www.one.com"
-}
 
-app.use((req, res, next) => {
-   var origin = cors.origin.indexOf(req.header('host').toLowerCase()) > -1 ? req.headers.origin : cors.main;
-  res.header('Access-Control-Allow-Origin', origin);
+app.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, authorization, token');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
 });
-
+app.use(express.static(__dirname + '/build'));
 
 app.use('/', paymentRouter, userRouter, remittanceRouter,
         loginRouter, adminRouter, activityRouter, smsRouter);
