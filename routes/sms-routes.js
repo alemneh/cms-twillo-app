@@ -8,7 +8,7 @@ let jwtAuth = require('../lib/auth.js');
 module.exports = (smsRouter, models) => {
   let User = models.User;
   let Message = models.Message;
-  smsRouter.post('/sms', (req, res) => {
+  smsRouter.post('/sms', jwtAuth, (req, res) => {
     User.find({}, (err, users) => {
       if(err) throw err;
       users.forEach((user) => {
@@ -38,7 +38,7 @@ module.exports = (smsRouter, models) => {
     });
   });
 
-  smsRouter.post('/sms/message', (req, res) => {
+  smsRouter.post('/sms/message', jwtAuth, (req, res) => {
     var newMessage = new Message(req.body);
     newMessage.save((err, msg) => {
       if(err) throw err;
@@ -48,7 +48,7 @@ module.exports = (smsRouter, models) => {
     });
   });
 
-  smsRouter.put('/sms/message', (req, res) => {
+  smsRouter.put('/sms/message', jwtAuth, (req, res) => {
     console.log(req.body);
     Message.findByIdAndUpdate('57a5305ab05f91be06971f3c', req.body, (err, msg) => {
       if(err) throw err;
