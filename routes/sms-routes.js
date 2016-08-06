@@ -53,20 +53,18 @@ module.exports = (smsRouter, models) => {
       if(err) throw err;
       User.find({}, (err, users) => {
         if(err) throw err;
-        users = [6192883205];
-        users.forEach((user) => {
           client.messages.create({
-            body: req.body.text,
-            to: '+1'+user.telephone,
+            body: req.body.generalMsg,
+            to: '+16192883205',
             from: process.env.TWILIO_NUMBER
           }, function(err, message) {
             if(err) console.log(err.message);
+            res.json({
+              data: req.body.text
+            });
             console.log(message.sid);
           });
-        });
-        res.json({
-          data: req.body.text
-        });
+
       });
     });
   });
