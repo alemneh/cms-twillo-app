@@ -31760,6 +31760,7 @@
 	        }
 	      }).then(function (res) {
 	        console.log(res);
+	        vm.members = res.data.data;
 	      }, function (err) {
 	        return console.log(err);
 	      });

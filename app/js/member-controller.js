@@ -28,6 +28,7 @@
           })
           .then((res) => {
             console.log(res);
+            vm.members = res.data.data;
           }, (err) => console.log(err));
       };
 
